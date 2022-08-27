@@ -1,0 +1,1 @@
+insert into FILES (id,name,size, path,extension) VALUES (1,'Test', 123 , '/FILES/test.pdf' , 'PDF');
