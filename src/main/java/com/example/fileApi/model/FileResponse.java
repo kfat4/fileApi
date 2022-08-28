@@ -1,0 +1,16 @@
+package com.example.fileApi.model;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
+
+@AllArgsConstructor
+@Getter
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+public class FileResponse {
+
+    private Long id;
+    private String fileName;
+    private String fileDownloadUri;
+    private String fileType;
+    private long size;
+}
