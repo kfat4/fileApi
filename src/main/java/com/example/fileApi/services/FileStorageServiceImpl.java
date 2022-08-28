@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -39,8 +40,8 @@ public class FileStorageServiceImpl implements FileStorageService {
     @Override
     public File storeFile(MultipartFile multipartFile) {
 
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        String type = multipartFile.getContentType().split("\\/")[1];
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        String type = Objects.requireNonNull(multipartFile.getContentType()).split("/")[1];
 
         if (!checkFileType(type)) {
             throw new FileStorageException("Unsupported file type " + fileName);
