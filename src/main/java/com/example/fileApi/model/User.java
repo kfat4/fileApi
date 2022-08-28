@@ -24,6 +24,7 @@ public class User implements Serializable {
     private String name;
 
     @NotNull
+    @Column(name = "SURNAME")
     private String surName;
 
     @NotNull

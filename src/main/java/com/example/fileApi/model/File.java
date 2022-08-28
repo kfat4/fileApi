@@ -27,6 +27,6 @@ public class File implements Serializable {
     @NotNull
     private String path;
     @NotNull
-    private String extension;
+    private String type;
 
 }
