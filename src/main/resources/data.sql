@@ -1,1 +1,1 @@
-insert into FILES (id,name,size, path,extension) VALUES (1,'Test', 123 , '/FILES/test.pdf' , 'PDF');
+insert into USERS (name,surName, password) VALUES ('fileStorageApi', 'APP' , '$2a$10$rpwdRZWuftuD2.liMlwcdOUzRTDwN4RsnqVnL8E89/62gqrK4WaXy');
