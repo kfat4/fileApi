@@ -51,6 +51,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    @Transactional
     public FileResponse update(Long fileId, MultipartFile file) {
 
         File existingFile = fileRepository.findById(fileId).orElseThrow(EntityNotFoundException::new);
@@ -66,6 +67,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    @Transactional
     public void deleteFile(Long id) {
         File file = fileRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         fileStorageService.deleteFile(file);
