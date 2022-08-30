@@ -5,6 +5,7 @@ import com.example.fileApi.model.FileResponse;
 import com.example.fileApi.services.FileService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,10 +36,11 @@ public class FileController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("/uploadFile")
     @ResponseBody
-    public ResponseEntity<FileResponse> uploadFile(@RequestBody MultipartFile file) {
-        return new ResponseEntity<>(fileService.save(file), HttpStatus.CREATED);
+    @PostMapping(value = "/upload", consumes = { MediaType.APPLICATION_JSON_VALUE,
+            MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<FileResponse> uploadFile(@RequestParam("file") MultipartFile file , @RequestParam("userId") Long userId) {
+        return new ResponseEntity<>(fileService.save(file ,userId), HttpStatus.CREATED);
     }
 
     @PutMapping("/updateFile/{id}")

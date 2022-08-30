@@ -1,7 +1,8 @@
 package com.example.fileApi.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @AllArgsConstructor
 @Getter

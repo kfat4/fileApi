@@ -5,9 +5,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface FileStorageService {
 
-     File storeFile(MultipartFile file);
+     File storeFile(MultipartFile file, Long userId);
 
-     File updateFile(MultipartFile multiPartFile , File file);
+     File updateFile(MultipartFile multiPartFile, File file);
 
      boolean deleteFile(File file);
 

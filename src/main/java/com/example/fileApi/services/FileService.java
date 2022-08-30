@@ -10,8 +10,8 @@ public interface FileService {
 
      File getFile(Long id);
      List<File> getFiles();
-     FileResponse save(MultipartFile file);
-     FileResponse update(Long id, MultipartFile file);
+     FileResponse save(MultipartFile file , Long userId);
+     FileResponse update(Long fileId, MultipartFile file);
      void deleteFile(Long id);
      byte [] getFileContent(Long id);
 }

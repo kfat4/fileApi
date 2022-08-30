@@ -2,6 +2,7 @@ package com.example.fileApi.services;
 
 import com.example.fileApi.model.File;
 import com.example.fileApi.model.FileResponse;
+import com.example.fileApi.model.User;
 import com.example.fileApi.repositories.FileRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ public class FileServiceImpl implements FileService {
     private final FileRepository fileRepository;
     private final FileStorageService fileStorageService;
 
+    private final UserService userService;
+
 
     @Override
     public File getFile(Long id) {
@@ -33,9 +36,11 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public FileResponse save(MultipartFile multipartFile) {
+    public FileResponse save(MultipartFile multipartFile , Long userId) {
+        File file = fileStorageService.storeFile(multipartFile,userId);
 
-        File file = fileStorageService.storeFile(multipartFile);
+        User user = userService.getUser(userId);
+        file.setUser(user);
         file = fileRepository.save(file);
         file = fileStorageService.renameByFileId(file);
         fileRepository.save(file);
@@ -44,9 +49,9 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public FileResponse update(Long id, MultipartFile file) {
+    public FileResponse update(Long fileId, MultipartFile file) {
 
-        File existingFile = fileRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        File existingFile = fileRepository.findById(fileId).orElseThrow(EntityNotFoundException::new);
 
         File updatedFile = fileStorageService.updateFile(file,existingFile);
 
