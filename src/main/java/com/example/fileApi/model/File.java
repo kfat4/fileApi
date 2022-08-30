@@ -23,10 +23,15 @@ public class File implements Serializable {
     @NotNull
     private String name;
     @NotNull
+    private String storageName;
+    @NotNull
     private Long size;
     @NotNull
     private String path;
     @NotNull
     private String type;
 
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
