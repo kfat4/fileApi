@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -21,5 +22,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByName(String userName) {
         return userRepository.findByName(userName).orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public List<User> getUsers() {
+        return userRepository.findAll();
     }
 }
