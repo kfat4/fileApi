@@ -6,6 +6,7 @@ import com.example.fileApi.model.User;
 import com.example.fileApi.repositories.FileRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
@@ -36,6 +37,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    @Transactional
     public FileResponse save(MultipartFile multipartFile , Long userId) {
         File file = fileStorageService.storeFile(multipartFile,userId);
 
