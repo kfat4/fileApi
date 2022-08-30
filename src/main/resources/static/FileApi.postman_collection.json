@@ -1,379 +1,639 @@
 {
 	"info": {
-		"_postman_id": "e8c11fd9-4fc9-4aee-afd7-6d12941d8d6c",
-		"name": "FileApi",
+		"_postman_id": "52cf979d-25ee-4a95-a787-90ecf6cfdc1c",
+		"name": "FileApi Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "6123110"
 	},
 	"item": [
 		{
-			"name": "get token",
-			"event": [
+			"name": "happy test",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();\r",
-							"\r",
-							"var token =  jsonData.token;\r",
-							"\r",
-							"pm.globals.set(\"token\", token);\r",
-							"\r",
-							"\r",
-							"console.log(token)\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"  pm.response.to.have.status(201);\r",
-							"});"
+					"name": "get token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"var token =  jsonData.token;\r",
+									"\r",
+									"pm.globals.set(\"token\", token);\r",
+									"\r",
+									"\r",
+									"console.log(token)\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "username",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "pas",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
 						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "username",
-						"value": "",
-						"type": "text",
-						"disabled": true
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"fileStorageApi\",\r\n    \"password\": \"fileStorageApi123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"authenticate"
+							]
+						}
 					},
-					{
-						"key": "pas",
-						"value": "",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"fileStorageApi\",\r\n    \"password\": \"fileStorageApi123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/authenticate",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"authenticate"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "upload",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();\r",
-							"\r",
-							"pm.globals.set(\"id\", jsonData.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"  pm.response.to.have.status(201);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "upload",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.globals.set(\"id\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": "/C:/Users/PC/Desktop/test.png"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8080/files/uploadFile",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "8080",
-					"path": [
-						"files",
-						"uploadFile"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get files",
-			"event": [
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/PC/Desktop/test.png"
+								},
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/files/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();\r",
-							"\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"  pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "get files",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/files",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "8080",
-					"path": [
-						"files"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get file with id",
-			"event": [
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();\r",
-							"\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"  pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "get file with id",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/files/{{id}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "8080",
-					"path": [
-						"files",
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update",
-			"event": [
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/files/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();\r",
-							"\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"  pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "update",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": "/C:/Users/PC/Desktop/test-update.png"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8080/files/updateFile/{{id}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "8080",
-					"path": [
-						"files",
-						"updateFile",
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get file content",
-			"event": [
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/PC/Desktop/test-update.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/files/updateFile/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files",
+								"updateFile",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();\r",
-							"\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"  pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "get file content",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.body;\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/files/fileContent/{{id}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "8080",
-					"path": [
-						"files",
-						"fileContent",
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete",
-			"event": [
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/files/fileContent/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files",
+								"fileContent",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();\r",
-							"\r",
-							"\r",
-							"pm.test(\"Status code is 204\", function () {\r",
-							"  pm.response.to.have.status(204);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "delete",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 204\", function () {\r",
+									"  pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/files/{{id}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "8080",
-					"path": [
-						"files",
-						"{{id}}"
-					]
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/files/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "get users",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
+			"name": "fail test",
+			"item": [
+				{
+					"name": "get token Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"var token =  jsonData.token;\r",
+									"\r",
+									"pm.globals.set(\"token\", token);\r",
+									"\r",
+									"\r",
+									"console.log(token)\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "username",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "pas",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"fileStorageApi\",\r\n    \"password\": \"fileStorageApi123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get token fail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"var token =  jsonData.token;\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"console.log(token)\r",
+									"\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "username",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "pas",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"fileStorageApis\",\r\n    \"password\": \"fileStorageApi123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload bigger than 5mb file",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Turgut/Resim/seçilen/snrlı mk zbt soruları/17.04.2011 Gemi Makineleri.pdf"
+								},
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/files/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload unsupported file type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/PC/Desktop/MuayeneOncesiKontrol.csx"
+								},
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/files/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
