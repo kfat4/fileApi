@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -16,12 +17,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(Long id) {
-        return userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No user can be found with this id!"));
     }
 
     @Override
-    public User getUserByName(String userName) {
-        return userRepository.findByName(userName).orElseThrow(EntityNotFoundException::new);
+    public Optional<User> getUserByName(String userName) {
+        return userRepository.findByName(userName);
     }
 
     @Override

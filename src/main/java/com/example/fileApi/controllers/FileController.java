@@ -4,9 +4,8 @@ import com.example.fileApi.model.File;
 import com.example.fileApi.model.FileResponse;
 import com.example.fileApi.services.FileService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,8 +48,21 @@ public class FileController {
     }
 
     @GetMapping("/fileContent/{id}")
-    public ResponseEntity<byte []> getFileContent(@PathVariable("id")  Long id){
-        return ResponseEntity.ok(fileService.getFileContent(id));
+    public ResponseEntity<ByteArrayResource> getFileContent(@PathVariable("id")  Long id){
+
+        byte[] array = fileService.getFileContent(id);
+
+        ByteArrayResource resource = new ByteArrayResource(array);
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .contentLength(resource.contentLength())
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        ContentDisposition.attachment()
+                                .filename("whatever")
+                                .build().toString())
+                .body(resource);
+
+//        return ResponseEntity.ok(fileService.getFileContent(id));
     }
 
 
