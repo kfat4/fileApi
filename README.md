@@ -9,6 +9,7 @@ Simple RESTful app for file storages
 ## Tech Stack
 - Spring Boot 2
 - JPA
+- JWT & Spring Security
 - Java 11
 - H2 (in-memory database)
 - Maven 3
@@ -31,6 +32,10 @@ Simple RESTful app for file storages
 ### Postman Collection Test 
 under
 \fileApi\src\main\resources\static
+
+### H2 Database
+
+http://localhost:8080/h2-ui
 
 ### API Documentation
 
