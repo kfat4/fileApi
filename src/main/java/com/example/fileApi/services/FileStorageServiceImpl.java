@@ -1,6 +1,7 @@
 package com.example.fileApi.services;
 
 import com.example.fileApi.handler.FileStorageException;
+import com.example.fileApi.handler.UnSupportedFileTypeException;
 import com.example.fileApi.model.File;
 import com.example.fileApi.model.FileType;
 import lombok.RequiredArgsConstructor;
@@ -47,7 +48,7 @@ public class FileStorageServiceImpl implements FileStorageService {
         String type = Objects.requireNonNull(multipartFile.getContentType()).split("/")[1];
 
         if (!checkFileType(type)) {
-            throw new FileStorageException("Unsupported file type " + storageFileName);
+            throw new UnSupportedFileTypeException("Unsupported file type " + storageFileName);
         }
 
         try {

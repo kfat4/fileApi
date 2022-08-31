@@ -33,7 +33,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(FileStorageException.class)
     public ResponseEntity handleFileStorageException(FileStorageException exception) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception.getMessage());
     }
 
     @ExceptionHandler(UnSupportedFileTypeException.class)
