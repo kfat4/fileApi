@@ -31,7 +31,7 @@ Simple RESTful app for file storages
 
 ### Postman Collection Test 
 under
-\fileApi\src\main\resources\static
+\fileApi\src\main\resources\postman
 
 ### H2 Database
 
