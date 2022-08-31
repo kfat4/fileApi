@@ -32,7 +32,7 @@ public class FileStorageServiceImpl implements FileStorageService {
             try {
                 Files.createDirectories(fileStorageLocation);
             } catch (IOException e) {
-                throw new FileStorageException("Could not create 'file-repository' directory ");
+                throw new FileStorageException("Could not create 'file-repository' directory ", e);
             }
         }
     }
@@ -89,7 +89,7 @@ public class FileStorageServiceImpl implements FileStorageService {
         try {
            return Files.deleteIfExists(Paths.get(file.getPath()));
         } catch (IOException e) {
-            throw new FileStorageException("Could not delete file " + file.getName());
+            throw new FileStorageException("Could not delete file " + file.getName() , e);
         }
     }
 
@@ -120,7 +120,7 @@ public class FileStorageServiceImpl implements FileStorageService {
             file.setStorageName(storageName);
 //            file.setName(source.toFile().getName());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new FileStorageException("Could not rename file name " + file.getName(), e);
         }
         return file;
     }

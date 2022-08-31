@@ -4,6 +4,7 @@ import com.example.fileApi.model.File;
 import com.example.fileApi.model.FileResponse;
 import com.example.fileApi.services.FileService;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/files")
 @AllArgsConstructor
+@Log4j2
 public class FileController {
 
 

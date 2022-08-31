@@ -5,6 +5,7 @@ import com.example.fileApi.auth.JwtTokenUtil;
 import com.example.fileApi.model.JwtRequest;
 import com.example.fileApi.model.JwtResponse;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 @AllArgsConstructor
+@Log4j2
 public class JwtAuthenticationController {
 
     private final DaoAuthenticationProvider daoAuthenticationProvider;
