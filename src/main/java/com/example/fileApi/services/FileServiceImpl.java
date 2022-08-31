@@ -54,11 +54,12 @@ public class FileServiceImpl implements FileService {
     @Transactional
     public FileResponse update(Long fileId, MultipartFile file) {
 
-        File existingFile = fileRepository.findById(fileId).orElseThrow(EntityNotFoundException::new);
+        File existingFile = fileRepository.findById(fileId).orElseThrow(() -> new EntityNotFoundException("Not found file with given id " + fileId));
 
         File updatedFile = fileStorageService.updateFile(file,existingFile);
 
         existingFile.setName(updatedFile.getName());
+        existingFile.setStorageName(updatedFile.getStorageName());
         existingFile.setSize(updatedFile.getSize());
         existingFile.setType(updatedFile.getType());
         existingFile.setPath(updatedFile.getPath());
@@ -69,14 +70,14 @@ public class FileServiceImpl implements FileService {
     @Override
     @Transactional
     public void deleteFile(Long id) {
-        File file = fileRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        File file = fileRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found file with given id " + id));
         fileStorageService.deleteFile(file);
         fileRepository.delete(file);
     }
 
     @Override
     public byte[] getFileContent(Long id) {
-        File file = fileRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        File file = fileRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found file with given id " + id));
         return  fileStorageService.getFileContent(file);
     }
 }
